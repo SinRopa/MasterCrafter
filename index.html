@@ -142,9 +142,9 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
     //ini
-  $scope.needs={};
-  $scope.needs.raw={};
-  $scope.needs.cloth={};
+  $scope.needs;
+  $scope.needs.raw;
+  $scope.needs.cloth;
 
   $scope.qty =1;
   $scope.finecloth =0;
@@ -154,6 +154,9 @@ app.controller('myCtrl', function($scope) {
   $scope.simplecloth =0;
   $scope.cotton=0;
 
+  $scope.advice;
+  $scope.advice.upgrade;
+  $scope.advice.craft;
 
 $scope.output = function() {
 
