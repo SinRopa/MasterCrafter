@@ -130,7 +130,7 @@
           <input type="number" placeholder=0 ng-model="cotton">
         </div>
 
-<div id="output" >
+<div id="output" >{{output()}}
 
    Upgrades:
 
@@ -252,7 +252,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         }
 
         if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
-        return $scope.advice;
+        return "You now have the mats required!";
 
 };//end output function
 
