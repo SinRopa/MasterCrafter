@@ -144,7 +144,18 @@ app.controller('myCtrl', function($scope) {
     
 
 $scope.output = function() {
-        return "This is the output script";
+
+var needs;
+needs.raw.cotton=0;
+needs.raw.flax=0;
+needs.raw.hemp=0;
+
+needs.cloth.simple=0;  
+needs.cloth.neat=0;
+needs.cloth.fine=0;
+
+needs.cloth.fine = $scope.qty * 8;
+        return "You still need "+ needs.cloth.fine;
     };
 });
 </script>
