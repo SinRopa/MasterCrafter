@@ -175,9 +175,9 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         //determine needs
         //Check if we have enough fine cloth on hand
         //if yes we are done
-        if($scope.finecloth >= $scope.needs.cloth.finecloth){return "You have the " + $scope.needs.cloth.finecloth + " required"}
+        if($scope.finecloth >= $scope.needs.cloth.finecloth){return "You have the " + $scope.needs.cloth.finecloth + " required";}
         // if not can we make any?
-        
+        else {return "You do not have the " + $scope.needs.cloth.finecloth + " required";}
         //to make a fine cloth we need 2 hemp and a neat cloth
         //total fine cloth we can make is min(neat, help/2)
 
