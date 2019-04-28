@@ -175,7 +175,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         //determine needs
         //Check if we have enough fine cloth on hand
         //if yes we are done
-        if($scope.finecloth >= $scope.needs.cloth.finecloth){return "You have the " + $scope.needs.cloth.finecloth + " Finr Cloth required";}
+        if($scope.finecloth >= $scope.needs.cloth.finecloth){return "You have the " + $scope.needs.cloth.finecloth + " Fine Cloth required";}
         // if not can we make any?
         else {
           //remove the qty we have from the need
@@ -213,7 +213,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         }
 
         if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
-        
+        return "You have the various mats required";
 
 };//end output function
 
