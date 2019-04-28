@@ -213,7 +213,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         {
           $scope.needs.cloth.simple -= $scope.simplecloth;
             //trickle down remaining need 1 cotton
-            $scope.needs.raw.cotton += $scope.needs.raw.cotton;
+            $scope.needs.raw.cotton += $scope.needs.cloth.simple;
         }
 
         if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
