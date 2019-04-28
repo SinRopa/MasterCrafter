@@ -192,24 +192,28 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         if($scope.hemp < $scope.needs.raw.hemp)
         {
             //trickle down remaining need x6 for hemp
-            $scope.needs.raw.flax += ($scope.needs.raw.hemp - $scope.hemp)*6;
-        
+            $scope.needs.raw.hemp -= $scope.hemp;
+            $scope.needs.raw.flax += $scope.needs.raw.hemp *6;
+            
         }
         if($scope.neatcloth < $scope.needs.cloth.neat)
         {
+          $scope.needs.cloth.neat -= $scope.neatcloth;
             //trickle down remaining need. neat is 2 flax and 1 simple
             $scope.needs.raw.flax += $scope.needs.cloth.neat *2;
             $scope.needs.cloth.simple += $scope.needs.cloth.neat;
         }
         if($scope.flax < $scope.needs.raw.flax)
         {
+          $scope.needs.raw.flax-= $scope.flax;
             //trickle down remaining need x3 for flax from cotton
-            $scope.needs.raw.cotton += ($scope.needs.raw.flax - $scope.flax) * 3;
+            $scope.needs.raw.cotton += $scope.needs.raw.flax * 3;
         }
         if($scope.simplecloth < $scope.needs.cloth.simple)
         {
+          $scope.needs.cloth.simple -= $scope.simple;
             //trickle down remaining need 1 cotton
-            $scope.needs.raw.cotton += ($scope.needs.raw.cotton - $scope.cotton);
+            $scope.needs.raw.cotton += $scope.needs.raw.cotton;
         }
 
         if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
