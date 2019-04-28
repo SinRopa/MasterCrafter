@@ -130,7 +130,7 @@
           <input type="number" placeholder="0" ng-model="cotton">
         </div>
 
-<div id="output"></div>
+<div id="output">{{output()}}</div>
 
 
 
@@ -142,11 +142,10 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
     
-/*     $scope.firstname = "John";
-    $scope.changeName = function() {
-        $scope.firstname = "Nelly";
-    } */
 
+$scope.output = function() {
+        return "This is the output script";
+    };
 });
 </script>
 
