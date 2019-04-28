@@ -145,18 +145,20 @@ app.controller('myCtrl', function($scope) {
 
 $scope.output = function() {
 
-var needs;
-needs.raw.cotton=0;
-needs.raw.flax=0;
-needs.raw.hemp=0;
 
-needs.cloth.simple=0;  
-needs.cloth.neat=0;
-needs.cloth.fine=0;
+$scope.needs.raw.cotton=0;
+$scope.needs.raw.flax=0;
+$scope.needs.raw.hemp=0;
 
-needs.cloth.fine = $scope.qty * 8;
-        return "You still need "+ needs.cloth.fine;
-    };
+$scope.needs.cloth.simple=0;  
+$scope.needs.cloth.neat=0;
+$scope.needs.cloth.fine=0;
+
+$scope.needs.cloth.fine = $scope.qty * 8;
+        return "You still need "+ $scope.needs.cloth.fine;
+};//end output function
+
+
 });
 </script>
 
