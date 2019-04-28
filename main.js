@@ -6,7 +6,8 @@ function save() {
     var saveString = JSON.stringify(game);
     var saveGame = JSON.parse(saveString);
 	isSaving = false;
-  
+}
+
   function load()
   {
     var savedata;
@@ -21,11 +22,3 @@ function save() {
     
     //update game with loaded values
   }
-  
-  
-  var game = 
-    {
-    cookies: 3,
-    cursors: 7,
-    prestige: 5
-    }
