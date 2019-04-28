@@ -130,7 +130,16 @@
           <input type="number" placeholder=0 ng-model="cotton">
         </div>
 
-<div id="output">{{output()}}</div>
+<div class=ng-repeat >
+
+    <ul ng-repeat="x in output()">
+        <li ng-repeat="y in x">
+          {{ x }}
+        </li>
+      </ul>
+
+
+</div>
 
 
 
@@ -171,6 +180,14 @@ $scope.needs.cloth.simple=0;
 $scope.needs.cloth.neat=0;
 $scope.needs.cloth.fine=0;
 
+$scope.advice.upgrade.cotton=0;
+$scope.advice.upgrade.flax=0;
+$scope.advice.upgrade.hemp=0;
+
+$scope.advice.craft.simple=0;  
+$scope.advice.craft.neat=0;
+$scope.advice.craft.fine=0;
+
 $scope.needs.cloth.fine = $scope.qty * 8;
         
 
@@ -197,7 +214,8 @@ $scope.needs.cloth.fine = $scope.qty * 8;
             //trickle down remaining need x6 for hemp
             $scope.needs.raw.hemp -= $scope.hemp;
             $scope.needs.raw.flax += $scope.needs.raw.hemp *6;
-            
+            //Queue upgrades
+            $scope.advice.upgrade.hemp = $scope.needs.raw.hemp;
         }
         if($scope.neatcloth < $scope.needs.cloth.neat)
         {
@@ -205,22 +223,28 @@ $scope.needs.cloth.fine = $scope.qty * 8;
             //trickle down remaining need. neat is 2 flax and 1 simple
             $scope.needs.raw.flax += $scope.needs.cloth.neat *2;
             $scope.needs.cloth.simple += $scope.needs.cloth.neat;
+            //Queue upgrades
+            $scope.advice.craft.neat = $scope.needs.cloth.neat;
         }
         if($scope.flax < $scope.needs.raw.flax)
         {
           $scope.needs.raw.flax-= $scope.flax;
             //trickle down remaining need x3 for flax from cotton
             $scope.needs.raw.cotton += $scope.needs.raw.flax * 3;
+            //Queue upgrades
+            $scope.advice.upgrade.flax = $scope.needs.raw.flax;
         }
         if($scope.simplecloth < $scope.needs.cloth.simple)
         {
           $scope.needs.cloth.simple -= $scope.simplecloth;
             //trickle down remaining need 1 cotton
             $scope.needs.raw.cotton += $scope.needs.cloth.simple;
+            //Queue upgrades
+            $scope.advice.craft.simple = $scope.needs.cloth.simple;
         }
 
         if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
-        return "You have the various mats required";
+        return $scope.advice;
 
 };//end output function
 
