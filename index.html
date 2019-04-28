@@ -211,7 +211,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         }
         if($scope.simplecloth < $scope.needs.cloth.simple)
         {
-          $scope.needs.cloth.simple -= $scope.simple;
+          $scope.needs.cloth.simple -= $scope.simplecloth;
             //trickle down remaining need 1 cotton
             $scope.needs.raw.cotton += $scope.needs.raw.cotton;
         }
