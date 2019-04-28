@@ -158,7 +158,7 @@ app.controller('myCtrl', function($scope) {
 $scope.output = function() {
 
 //binding
-var totalmats = $scope.qty + $scope.finecloth +$scope.hemp+$scope.flax+$scope.neatcloth +$scope.simplecloth +$scope.cotton;
+//var totalmats = $scope.qty + $scope.finecloth +$scope.hemp+$scope.flax+$scope.neatcloth +$scope.simplecloth +$scope.cotton;
 
 $scope.needs.raw.cotton=0;
 $scope.needs.raw.flax=0;
@@ -175,6 +175,7 @@ $scope.needs.cloth.fine = $scope.qty * 8;
         //determine needs
         //Check if we have enough fine cloth on hand
         //if yes we are done
+        if($scope.finecloth >= $scope.needs.cloth.finecloth){return "You have the " + $scope.needs.cloth.finecloth + " required"}
         // if not can we make any?
         
         //to make a fine cloth we need 2 hemp and a neat cloth
