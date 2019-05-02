@@ -80,7 +80,15 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-    
+//default prices
+$scope.t2cost = 27;
+$scope.t3cost = 28;
+$scope.t4cost = 85;
+$scope.t5cost = 783;
+$scope.t6cost = 816;
+$scope.t7cost = 1450;
+$scope.t8cost = 8200;
+
 $scope.costs={};
 $scope.costs.t2 = $scope.t2cost;
 $scope.costs.t3 = $scope.t3cost;
