@@ -170,12 +170,17 @@ $scope.tabledata.t6.tier = 6;
 $scope.tabledata.t7.tier = 7;
 
 //t2 data work
-$scope.tabledata.t2.t3p = $scope.t3cost - ($scope.t2cost * 3);
+//$scope.tabledata.t2.t3p = $scope.t3cost - ($scope.t2cost * 3);
+$scope.tabledata.t2.t3p = 1000;
 $scope.tabledata.t2.t4p = $scope.t4cost - ($scope.t2cost * 6 * 3);
 $scope.tabledata.t2.t5p = $scope.t5cost - ($scope.t2cost * 9 * 6 * 3);
 $scope.tabledata.t2.t6p = $scope.t6cost - ($scope.t2cost * 15 * 9 * 6 * 3);
 $scope.tabledata.t2.t7p = $scope.t7cost - ($scope.t2cost * 25 * 15 * 9 * 6 * 3);
 $scope.tabledata.t2.t8p = $scope.t8cost - ($scope.t2cost * 42 * 25 * 15 * 9 * 6 * 3);
+
+//color
+if($scope.tabledata.t2.t3p > 0){$scope.tabledata.t2.t3p.profit = true;}
+
 
 //t3 data work
 $scope.tabledata.t3.t3p = "X";
