@@ -179,11 +179,11 @@ $scope.tabledata.t2.t8p = "";
 //t3 data work
 $scope.tabledata.t3.t2p = "X";
 $scope.tabledata.t3.t3p = "X";
-$scope.tabledata.t3.t4p = "";
-$scope.tabledata.t3.t5p = "";
-$scope.tabledata.t3.t6p = "";
-$scope.tabledata.t3.t7p = "";
-$scope.tabledata.t3.t8p = "";
+$scope.tabledata.t3.t4p = $scope.t4cost - ($scope.t3cost * 6);
+$scope.tabledata.t3.t5p = $scope.t5cost - ($scope.t3cost * 9 * 6);
+$scope.tabledata.t3.t6p = $scope.t6cost - ($scope.t3cost * 15 * 9 * 6);
+$scope.tabledata.t3.t7p = $scope.t7cost - ($scope.t3cost * 25 * 15 * 9 * 6);
+$scope.tabledata.t3.t8p = $scope.t8cost - ($scope.t3cost * 42 * 25 * 15 * 9 * 6);
 
 //t4 data work
 $scope.tabledata.t4.t2p = "X";
