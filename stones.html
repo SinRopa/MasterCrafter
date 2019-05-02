@@ -206,8 +206,10 @@ $scope.tabledata.t6.t3p = "X";
 $scope.tabledata.t6.t4p = "X";
 $scope.tabledata.t6.t5p = "X";
 $scope.tabledata.t6.t6p = "X";
-$scope.tabledata.t6.t7p = "";
-$scope.tabledata.t6.t8p = "";
+$scope.tabledata.t6.t7p = $scope.t7cost - ($scope.t6cost * 25);
+$scope.tabledata.t6.t8p = $scope.t8cost - ($scope.t6cost * 42 * 25);
+
+
 //t7 data work
 $scope.tabledata.t7.t2p = "X";
 $scope.tabledata.t7.t3p = "X";
@@ -216,12 +218,7 @@ $scope.tabledata.t7.t5p = "X";
 $scope.tabledata.t7.t6p = "X";
 $scope.tabledata.t7.t7p = "X";
 //convert T7 to T8
-
-$scope.tabledata.t7.t8p = $scope.t7cost * 42;
-
-
-
-
+$scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
 });
 </script>
 
