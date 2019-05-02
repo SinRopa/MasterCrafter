@@ -248,7 +248,7 @@ $scope.needs.block.t5b = $scope.qty;
         if($scope.t4s < $scope.needs.raw.t4s)
         {
             //trickle down remaining need x6 
-            $scope.needs.raw.t4s -= $scope.t4s; //remove the granite stone we already have
+            $scope.needs.raw.t4s -= $scope.t4s; 
             $scope.needs.raw.t3s += $scope.needs.raw.t4s *6; 
             //Queue upgrades
             $scope.advice.upgrade.t4s = $scope.needs.raw.t4s; 
@@ -270,7 +270,7 @@ $scope.needs.block.t5b = $scope.qty;
         if($scope.t3s < $scope.needs.raw.t3s)
         {
             //trickle down remaining need x3 
-            $scope.needs.raw.t3s -= $scope.t3s; //remove the granite stone we already have
+            $scope.needs.raw.t3s -= $scope.t3s; 
             $scope.needs.raw.t2s += $scope.needs.raw.t3s *3; 
             //Queue upgrades
             $scope.advice.upgrade.t3s = $scope.needs.raw.t3s;
