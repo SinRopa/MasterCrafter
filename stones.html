@@ -1,0 +1,265 @@
+<!doctype html>
+<HTML lang="en">
+  <HEAD>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Master Crafter</title>
+	<meta name="description" content="Albion Online Crafting Suite">
+	<meta name="author" content="SinRopa">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!--<link rel="stylesheet" href="custom.css" -->
+ 
+ 
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135929541-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-135929541-1');
+</script>
+
+	</HEAD>
+  <BODY>
+      <div ng-app="myApp" ng-controller="myCtrl">
+    
+    
+   <h3> Stone Convert </h3>
+
+   <div class="input-group ">
+    <div class="input-group-prepend">
+      <span class="input-group-text" >Qty</span>
+    </div>
+    <input type="number" placeholder=1 ng-model="qty">
+  </div>
+
+  <h3>T5</h3>
+  <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T5 Stone</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t5s">
+    </div>
+  
+  <h3>T4</h3>
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >T4 Blocks</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="t4b">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >T4 Stone</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="t4s">
+        </div>
+        <h3> T3</h3>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">T3 Blocks</span>
+          </div>
+          <input type="number" placeholder=0  ng-model="t3b">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >T3 Stone</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="t3s">
+        </div>
+        <h3>T2</h3>
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">T2 Blocks</span>
+          </div>
+          <input type="number" placeholder=0  ng-model="t2b">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >T2 Stone</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="t2s">
+        </div>
+      
+<div id="output" >{{output()}}
+
+   <h3>Upgrades:</h3>
+
+   <ul>
+     <li>T3 Stone: {{advice.upgrade.t3s}}</li>
+     <li>T4 Stone: {{advice.upgrade.t4s}}</li>
+     <li>T5 Stone: {{advice.upgrade.t5s}}</li>
+   </ul>
+
+   <h3>Craft:</h3>
+   <ul>
+      <li>T2 Blocks: {{advice.craft.t2b}}</li>
+      <li>T3 Blocks: {{advice.craft.t3b}}</li>
+      <li>T4 Blocks: {{advice.craft.t4b}}</li>
+    </ul>
+
+</div>
+
+
+
+
+    
+</div><!--ngapp-->
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    //ini
+  $scope.needs={};
+  $scope.needs.raw={};
+  $scope.needs.block={};
+
+  $scope.qty =1;
+  
+  $scope.t5s =0;
+
+  $scope.t4b =0;
+  $scope.t4s =0;
+
+  $scope.t3b =0;
+  $scope.t3s =0;
+
+  $scope.t2b =0;
+  $scope.t2s =0;
+  
+
+  $scope.advice={};
+  $scope.advice.upgrade={};
+  $scope.advice.craft={};
+
+$scope.output = function() {
+
+
+$scope.needs.raw.t2s=0;
+$scope.needs.raw.t3s=0;
+$scope.needs.raw.t4s=0;
+$scope.needs.raw.t5s=0;
+
+$scope.needs.block.t2b=0;  
+$scope.needs.block.t3b=0;
+$scope.needs.block.t4b=0;
+
+
+$scope.advice.upgrade.t5s=0;
+$scope.advice.upgrade.t3s=0;
+$scope.advice.upgrade.t4s=0;
+
+$scope.advice.craft.t2b=0;  
+$scope.advice.craft.t3b=0;
+$scope.advice.craft.t4b=0;
+
+$scope.needs.block.t5b = $scope.qty;
+        
+
+
+        
+
+          
+        //to make a t5 we need 3 t5 stone and a t4 block
+        $scope.needs.raw.t5s += $scope.needs.block.t5b *3;
+        $scope.needs.block.t4b += $scope.needs.block.t5b;
+        
+
+        //convert T4 Stone to T5 stone
+
+        if($scope.t5s < $scope.needs.raw.t5s)
+        {
+            //trickle down remaining need x9 
+            $scope.needs.raw.t5s -= $scope.t5s; //remove the granite stone we already have
+            $scope.needs.raw.t4s += $scope.needs.raw.t5s *9; //scale the need of granite by nine to convert from travertine
+            //Queue upgrades
+            $scope.advice.upgrade.t5s = $scope.needs.raw.t5s; //queue the upgrade of travertine to granite stones
+        }
+        else{$scope.needs.raw.t5s = 0;} //handle case already have mats}
+
+        //craft needed T4 blocks
+        if($scope.t4b < $scope.needs.block.t4b)
+        {
+          $scope.needs.block.t4b -= $scope.t4b;
+            //trickle down remaining need x6
+            $scope.needs.raw.t3s += $scope.needs.block.t4b *6;
+            $scope.needs.block.t3b += $scope.needs.block.t4b;
+            //Queue upgrades
+            $scope.advice.craft.t4b = $scope.needs.block.t4b;
+        }
+        
+        //convert T3 stone to T4 stone
+
+        if($scope.t4s < $scope.needs.raw.t4s)
+        {
+            //trickle down remaining need x6 
+            $scope.needs.raw.t4s -= $scope.t4s; 
+            $scope.needs.raw.t3s += $scope.needs.raw.t4s *6; 
+            //Queue upgrades
+            $scope.advice.upgrade.t4s = $scope.needs.raw.t4s; 
+        }
+
+        //craft needed T3 blocks
+        if($scope.t3b < $scope.needs.block.t3b)
+        {
+          $scope.needs.block.t3b -= $scope.t3b;
+            //trickle down remaining need x3
+            $scope.needs.raw.t2s += $scope.needs.block.t3b *3;
+            $scope.needs.block.t2b += $scope.needs.block.t3b;
+            //Queue upgrades
+            $scope.advice.craft.t3b = $scope.needs.block.t3b;
+        }
+
+        //convert T2 Stone to T3 stone
+
+        if($scope.t3s < $scope.needs.raw.t3s)
+        {
+            //trickle down remaining need x3 
+            $scope.needs.raw.t3s -= $scope.t3s; 
+            $scope.needs.raw.t2s += $scope.needs.raw.t3s *3; 
+            //Queue upgrades
+            $scope.advice.upgrade.t3s = $scope.needs.raw.t3s;
+        }
+
+        //craft needed T2 blocks
+        if($scope.t2b < $scope.needs.block.t2b)
+        {
+          $scope.needs.block.t2b -= $scope.t2b;
+            //trickle down remaining need x1
+            $scope.needs.raw.t2s += $scope.needs.block.t2b;
+            
+            //Queue upgrades
+            $scope.advice.craft.t2b = $scope.needs.block.t2b;
+        }
+
+                
+
+    
+        if($scope.t2s < $scope.needs.raw.t2s){return "You need to farm " +($scope.needs.raw.t2s - $scope.t2s) + " more T2 Stone";}
+        return "You now have the mats required!";
+
+};//end output function
+
+
+});
+</script>
+
+<!-- End  T4 Crafting Tests -->
+    <script type="text/javascript" src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  </BODY>
+<footer id="version">Game Version 1.14.381</footer>
+</HTML>
+
