@@ -171,7 +171,6 @@ $scope.tabledata.t5.tier = 5;
 $scope.tabledata.t6.tier = 6; 
 $scope.tabledata.t7.tier = 7;
 
-
 //t2 data work
 $scope.tabledata.t2.t3p = $scope.t3cost - ($scope.t2cost * 3);
 $scope.tabledata.t2.t4p = $scope.t4cost - ($scope.t2cost * 6 * 3);
@@ -220,6 +219,19 @@ $scope.tabledata.t7.t6p = "X";
 $scope.tabledata.t7.t7p = "X";
 //convert T7 to T8
 $scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
+
+
+//coloring logic
+foreach(t in $scope.tabledata)
+{
+
+  foreach(profit in t)
+  {
+    profit.profit = false;
+    if(profit > 0){profit.profit = true;}
+  }
+}
+
 });
 </script>
 
