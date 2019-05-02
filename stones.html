@@ -35,6 +35,7 @@
          <span class="input-group-text" >T2 Stone Cost</span>
        </div>
        <input type="number" placeholder=0 ng-model="t2cost">
+       {{t2equiv.t2}}
      </div>
      <div class="input-group ">
       <div class="input-group-prepend">
@@ -81,6 +82,18 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 //default prices
+
+$scope.t2equiv = {};
+
+$scope.t2equiv.t2 = 1;
+$scope.t2equiv.t3 = t2equiv.t2 * 3;
+$scope.t2equiv.t4 = t2equiv.t3 * 6;
+$scope.t2equiv.t5 = t2equiv.t4 * 9;
+$scope.t2equiv.t6 = t2equiv.t5 * 15;
+$scope.t2equiv.t7 = t2equiv.t6 * 25;
+$scope.t2equiv.t8 = t2equiv.t7 * 42;
+
+
 $scope.t2cost = 27;
 $scope.t3cost = 28;
 $scope.t4cost = 85;
