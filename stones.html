@@ -92,7 +92,6 @@
       <thead>
         <tr>
           <th scope="col">Start Tier</th>
-          <th scope="col">T2</th>
           <th scope="col">T3</th>
           <th scope="col">T4</th>
           <th scope="col">T5</th>
@@ -106,7 +105,6 @@
         <tr ng-repeat="data in tabledata">
           
           <td>{{data.tier}} </td>
-          <td ng-class='{green : data.t2p.profit}'>{{data.t2p}}</td>
           <td ng-class='{green : data.t3p.profit}'>{{data.t3p}}</td>
           <td ng-class='{green : data.t4p.profit}'>{{data.t4p}}</td>
           <td ng-class='{green : data.t5p.profit}'>{{data.t5p}}</td>
