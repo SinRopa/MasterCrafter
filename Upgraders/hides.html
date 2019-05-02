@@ -167,6 +167,30 @@ $scope.t2equiv.t7 = $scope.t2equiv.t6 * 25;
 $scope.t2equiv.t8 = $scope.t2equiv.t7 * 42;
 
 //default prices
+//633:T1_HIDE
+//634:T2_HIDE
+//635:T3_HIDE
+//636:T4_HIDE
+//637:T5_HIDE
+//638:T6_HIDE
+//639:T7_HIDE
+//640:T8_HIDE
+//https://www.albion-online-data.com/api/v2/stats/prices/T2_HIDE?locations=martlock
+//full
+//https://www.albion-online-data.com/api/v1/stats/Prices/T2_HIDE%2CT3_HIDE%2CT4_HIDE%2CT5_HIDE%2CT6_HIDE%2CT7_HIDE%2CT8_HIDE?locations=martlock
+
+
+//get prices
+let url = 'https://www.albion-online-data.com/api/v1/stats/Prices/T2_HIDE%2CT3_HIDE%2CT4_HIDE%2CT5_HIDE%2CT6_HIDE%2CT7_HIDE%2CT8_HIDE?locations=martlock';
+
+fetch(url)
+.then(res => res.json())
+.then((out) => {
+  console.log('Checkout this JSON! ', out);
+})
+.catch(err => { throw err });
+
+
 $scope.t2cost = 17;
 $scope.t3cost = 30;
 $scope.t4cost = 119;
