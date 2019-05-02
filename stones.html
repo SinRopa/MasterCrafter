@@ -218,18 +218,6 @@ $scope.tabledata.t7.t7p = "X";
 //convert T7 to T8
 $scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
 
-
-//coloring logic
-foreach(t in $scope.tabledata)
-{
-
-  foreach(profit in t)
-  {
-    profit.profit = false;
-    if(profit > 0){profit.profit = true;}
-  }
-}
-
 });
 </script>
 
