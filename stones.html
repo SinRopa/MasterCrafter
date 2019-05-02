@@ -33,7 +33,7 @@
   </style>
 
 	</HEAD>
-  <BODY>
+  <BODY onchange="output()">
       <div ng-app="myApp" ng-controller="myCtrl">
     
     
@@ -147,6 +147,8 @@ $scope.t7cost = 1450;
 $scope.t8cost = 8200;
 
 $scope.costs={};
+
+$scope.output = function() {
 $scope.costs.t2 = $scope.t2cost;
 $scope.costs.t3 = $scope.t3cost;
 $scope.costs.t4 = $scope.t4cost;
@@ -220,6 +222,8 @@ $scope.tabledata.t7.t7p = "X";
 
 //convert T7 to T8
 $scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
+
+}; //end output function
 
 });
 </script>
