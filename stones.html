@@ -50,42 +50,42 @@
       <div class="input-group-prepend">
         <span class="input-group-text" >T3 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t3cost">
+      <input type="number" placeholder=0 ng-model="t3cost" ng-change="output()"> 
       
     </div>
     <div class="input-group ">
       <div class="input-group-prepend">
         <span class="input-group-text" >T4 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t4cost">
+      <input type="number" placeholder=0 ng-model="t4cost" ng-change="output()">
       
     </div>
     <div class="input-group ">
       <div class="input-group-prepend">
         <span class="input-group-text" >T5 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t5cost">
+      <input type="number" placeholder=0 ng-model="t5cost" ng-change="output()">
       
     </div>
     <div class="input-group ">
       <div class="input-group-prepend">
         <span class="input-group-text" >T6 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t6cost">
+      <input type="number" placeholder=0 ng-model="t6cost" ng-change="output()">
       
     </div>
     <div class="input-group ">
       <div class="input-group-prepend">
         <span class="input-group-text" >T7 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t7cost">
+      <input type="number" placeholder=0 ng-model="t7cost" ng-change="output()">
       
     </div>
     <div class="input-group ">
       <div class="input-group-prepend">
         <span class="input-group-text" >T8 Stone Cost</span>
       </div>
-      <input type="number" placeholder=0 ng-model="t8cost">
+      <input type="number" placeholder=0 ng-model="t8cost" ng-change="output()">
       
     </div>
 
@@ -224,6 +224,8 @@ $scope.tabledata.t7.t7p = "X";
 $scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
 
 }; //end output function
+
+$scope.output();
 
 });
 </script>
