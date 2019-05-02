@@ -96,11 +96,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="tier in t2equiv">
-          <th scope="row">tier</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr ng-repeat="data in tabledata">
+          
+          <td>data.tier </td>
+         
         </tr>
         
       </tbody>
@@ -141,6 +140,36 @@ $scope.costs.t5 = $scope.t5cost;
 $scope.costs.t6 = $scope.t6cost;
 $scope.costs.t7 = $scope.t7cost;
 $scope.costs.t8 = $scope.t8cost;
+
+$scope.tabledata = {};
+
+
+$scope.tabledata.t2= {};
+$scope.tabledata.t3= {};
+$scope.tabledata.t4= {};
+$scope.tabledata.t5= {};
+$scope.tabledata.t6= {};
+$scope.tabledata.t7= {};
+$scope.tabledata.t8= {};
+
+$scope.tabledata.t2.tier = 2;
+$scope.tabledata.t3.tier = 3;
+$scope.tabledata.t4.tier = 4;
+$scope.tabledata.t5.tier = 5;
+$scope.tabledata.t6.tier = 6; 
+$scope.tabledata.t7.tier = 7;
+$scope.tabledata.t8.tier = 8;
+
+//t2 data work
+
+//t3 data work
+//t4 data work
+//t5 data work
+//t6 data work
+//t7 data work
+//t8 data work
+
+
 
 });
 </script>
