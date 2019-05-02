@@ -1,0 +1,243 @@
+<!doctype html>
+<HTML lang="en">
+  <HEAD>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Master Crafter</title>
+	<meta name="description" content="Albion Online Crafting Suite">
+	<meta name="author" content="SinRopa">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!--<link rel="stylesheet" href="custom.css" -->
+ 
+ 
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135929541-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-135929541-1');
+</script>
+
+
+<style type="text/css">
+  .green {
+      color: rgb(49, 155, 155); 
+      background-color:rgb(118, 172, 122);
+    
+  }
+  </style>
+
+	</HEAD>
+  <BODY>
+      <div ng-app="myApp" ng-controller="myCtrl">
+    
+    
+   <h3> Ore Convert </h3>
+
+   <div class="input-group ">
+       <div class="input-group-prepend">
+         <span class="input-group-text" >T2 Ore Cost</span>
+       </div>
+       <input type="number" placeholder=0 ng-model="t2cost" ng-change="output()">
+       
+     </div>
+     <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T3 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t3cost" ng-change="output()"> 
+      
+    </div>
+    <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T4 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t4cost" ng-change="output()">
+      
+    </div>
+    <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T5 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t5cost" ng-change="output()">
+      
+    </div>
+    <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T6 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t6cost" ng-change="output()">
+      
+    </div>
+    <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T7 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t7cost" ng-change="output()">
+      
+    </div>
+    <div class="input-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >T8 Ore Cost</span>
+      </div>
+      <input type="number" placeholder=0 ng-model="t8cost" ng-change="output()">
+      
+    </div>
+
+
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Start Tier</th>
+          <th scope="col">T3</th>
+          <th scope="col">T4</th>
+          <th scope="col">T5</th>
+          <th scope="col">T6</th>
+          <th scope="col">T7</th>
+          <th scope="col">T8</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="data in tabledata">
+          
+          <td>{{data.tier}} </td>
+          <td ng-class='{green : data.t3p>0}'>{{data.t3p}}</td>
+          <td ng-class='{green : data.t4p>0}'>{{data.t4p}}</td>
+          <td ng-class='{green : data.t5p>0}'>{{data.t5p}}</td>
+          <td ng-class='{green : data.t6p>0}'>{{data.t6p}}</td>
+          <td ng-class='{green : data.t7p>0}'>{{data.t7p}}</td>
+          <td ng-class='{green : data.t8p>0}'>{{data.t8p}}</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+
+    
+</div><!--ngapp-->
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+
+
+$scope.t2equiv={};
+//How many T2 Ores is each tier equal to
+$scope.t2equiv.t2 = 1;
+$scope.t2equiv.t3 = $scope.t2equiv.t2 * 3;
+$scope.t2equiv.t4 = $scope.t2equiv.t3 * 6;
+$scope.t2equiv.t5 = $scope.t2equiv.t4 * 9;
+$scope.t2equiv.t6 = $scope.t2equiv.t5 * 15;
+$scope.t2equiv.t7 = $scope.t2equiv.t6 * 25;
+$scope.t2equiv.t8 = $scope.t2equiv.t7 * 42;
+
+//default prices
+$scope.t2cost = 27;
+$scope.t3cost = 28;
+$scope.t4cost = 85;
+$scope.t5cost = 783;
+$scope.t6cost = 816;
+$scope.t7cost = 1450;
+$scope.t8cost = 8200;
+
+$scope.costs={};
+
+$scope.output = function() {
+$scope.costs.t2 = $scope.t2cost;
+$scope.costs.t3 = $scope.t3cost;
+$scope.costs.t4 = $scope.t4cost;
+$scope.costs.t5 = $scope.t5cost;
+$scope.costs.t6 = $scope.t6cost;
+$scope.costs.t7 = $scope.t7cost;
+$scope.costs.t8 = $scope.t8cost;
+
+$scope.tabledata = {};
+
+$scope.tabledata.t2 = {};
+$scope.tabledata.t3= {};
+$scope.tabledata.t4= {};
+$scope.tabledata.t5= {};
+$scope.tabledata.t6= {};
+$scope.tabledata.t7= {};
+
+$scope.tabledata.t2.tier = 2;
+$scope.tabledata.t3.tier = 3;
+$scope.tabledata.t4.tier = 4;
+$scope.tabledata.t5.tier = 5;
+$scope.tabledata.t6.tier = 6; 
+$scope.tabledata.t7.tier = 7;
+
+//t2 data work
+$scope.tabledata.t2.t3p = $scope.t3cost - ($scope.t2cost * 3);
+$scope.tabledata.t2.t4p = $scope.t4cost - ($scope.t2cost * 6 * 3);
+$scope.tabledata.t2.t5p = $scope.t5cost - ($scope.t2cost * 9 * 6 * 3);
+$scope.tabledata.t2.t6p = $scope.t6cost - ($scope.t2cost * 15 * 9 * 6 * 3);
+$scope.tabledata.t2.t7p = $scope.t7cost - ($scope.t2cost * 25 * 15 * 9 * 6 * 3);
+$scope.tabledata.t2.t8p = $scope.t8cost - ($scope.t2cost * 42 * 25 * 15 * 9 * 6 * 3);
+
+//t3 data work
+$scope.tabledata.t3.t3p = "X";
+$scope.tabledata.t3.t4p = $scope.t4cost - ($scope.t3cost * 6);
+$scope.tabledata.t3.t5p = $scope.t5cost - ($scope.t3cost * 9 * 6);
+$scope.tabledata.t3.t6p = $scope.t6cost - ($scope.t3cost * 15 * 9 * 6);
+$scope.tabledata.t3.t7p = $scope.t7cost - ($scope.t3cost * 25 * 15 * 9 * 6);
+$scope.tabledata.t3.t8p = $scope.t8cost - ($scope.t3cost * 42 * 25 * 15 * 9 * 6);
+
+//t4 data work
+$scope.tabledata.t4.t3p = "X";
+$scope.tabledata.t4.t4p = "X";
+$scope.tabledata.t4.t5p = $scope.t5cost - ($scope.t4cost * 9);
+$scope.tabledata.t4.t6p = $scope.t6cost - ($scope.t4cost * 15 * 9);
+$scope.tabledata.t4.t7p = $scope.t7cost - ($scope.t4cost * 25 * 15 * 9);
+$scope.tabledata.t4.t8p = $scope.t8cost - ($scope.t4cost * 42 * 25 * 15 * 9);
+
+//t5 data work
+$scope.tabledata.t5.t3p = "X";
+$scope.tabledata.t5.t4p = "X";
+$scope.tabledata.t5.t5p = "X";
+$scope.tabledata.t5.t6p = $scope.t6cost - ($scope.t5cost * 15);
+$scope.tabledata.t5.t7p = $scope.t7cost - ($scope.t5cost * 25 * 15);
+$scope.tabledata.t5.t8p = $scope.t8cost - ($scope.t5cost * 42 * 25 * 15);
+
+//t6 data work
+$scope.tabledata.t6.t3p = "X";
+$scope.tabledata.t6.t4p = "X";
+$scope.tabledata.t6.t5p = "X";
+$scope.tabledata.t6.t6p = "X";
+$scope.tabledata.t6.t7p = $scope.t7cost - ($scope.t6cost * 25);
+$scope.tabledata.t6.t8p = $scope.t8cost - ($scope.t6cost * 42 * 25);
+
+//t7 data work
+$scope.tabledata.t7.t3p = "X";
+$scope.tabledata.t7.t4p = "X";
+$scope.tabledata.t7.t5p = "X";
+$scope.tabledata.t7.t6p = "X";
+$scope.tabledata.t7.t7p = "X";
+
+//convert T7 to T8
+$scope.tabledata.t7.t8p = $scope.t8cost - ($scope.t7cost * 42);
+
+}; //end output function
+
+$scope.output();
+
+});
+</script>
+
+<!-- End  T4 Crafting Tests -->
+    <script type="text/javascript" src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  </BODY>
+<footer id="version">Game Version 1.14.381</footer>
+</HTML>
+
