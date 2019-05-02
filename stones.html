@@ -81,10 +81,10 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-//default prices
+
 
 $scope.t2equiv = {};
-
+//How many T2 stones is each tier equal to
 $scope.t2equiv.t2 = 1;
 $scope.t2equiv.t3 = t2equiv.t2 * 3;
 $scope.t2equiv.t4 = t2equiv.t3 * 6;
@@ -93,7 +93,7 @@ $scope.t2equiv.t6 = t2equiv.t5 * 15;
 $scope.t2equiv.t7 = t2equiv.t6 * 25;
 $scope.t2equiv.t8 = t2equiv.t7 * 42;
 
-
+//default prices
 $scope.t2cost = 27;
 $scope.t3cost = 28;
 $scope.t4cost = 85;
