@@ -89,14 +89,14 @@
   <h3>T4</h3>
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text" >Fine Cloth</span>
+            <span class="input-group-text" >T4 Crafted</span>
           </div>
           <input type="number" placeholder=0 ng-model="finecloth">
         </div>
 
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text" >Hemp</span>
+            <span class="input-group-text" >T4 Raw</span>
           </div>
           <input type="number" placeholder=0 ng-model="hemp">
         </div>
@@ -104,28 +104,28 @@
 
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text">Neat Cloth</span>
+            <span class="input-group-text">T3 Crafted</span>
           </div>
           <input type="number" placeholder=0  ng-model="neatcloth">
         </div>
 
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text" >Flax</span>
+            <span class="input-group-text" >T3 Raw</span>
           </div>
           <input type="number" placeholder=0 ng-model="flax">
         </div>
         <h3>T2</h3>
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text">Simple Cloth</span>
+            <span class="input-group-text">T2 Crafted</span>
           </div>
           <input type="number" placeholder=0  ng-model="simplecloth">
         </div>
 
       <div class="input-group ">
           <div class="input-group-prepend">
-            <span class="input-group-text" >Cotton</span>
+            <span class="input-group-text" >T2 Raw</span>
           </div>
           <input type="number" placeholder=0 ng-model="cotton">
         </div>
@@ -135,16 +135,16 @@
    <h3>Upgrades:</h3>
 
    <ul>
-     <li>Flax: {{advice.upgrade.flax}}</li>
-     <li>Hemp: {{advice.upgrade.hemp}}</li>
+     <li>T3: {{advice.upgrade.flax}}</li>
+     <li>T4: {{advice.upgrade.hemp}}</li>
      
    </ul>
 
    <h3>Craft:</h3>
    <ul>
-      <li>Simple: {{advice.craft.simple}}</li>
-      <li>Neat: {{advice.craft.neat}}</li>
-      <li>Fine: {{advice.craft.fine}}</li>
+      <li>T2: {{advice.craft.simple}}</li>
+      <li>T3: {{advice.craft.neat}}</li>
+      <li>T4: {{advice.craft.fine}}</li>
     </ul>
 
 </div>
@@ -196,7 +196,7 @@ $scope.advice.craft.simple=0;
 $scope.advice.craft.neat=0;
 $scope.advice.craft.fine=0;
 
-$scope.needs.cloth.fine = $scope.qty * 8;
+$scope.needs.cloth.fine = $scope.qty;
         
 
 
