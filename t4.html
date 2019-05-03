@@ -1,0 +1,274 @@
+<!doctype html>
+<HTML lang="en">
+  <HEAD>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Master Crafter</title>
+	<meta name="description" content="Albion Online Crafting Suite">
+	<meta name="author" content="SinRopa">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!--<link rel="stylesheet" href="custom.css" -->
+ 
+ 
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135929541-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-135929541-1');
+</script>
+
+	</HEAD>
+  <BODY>
+      <div ng-app="myApp" ng-controller="myCtrl">
+    <!-- Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">SinRopa MasterCraft</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Recipes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Refine / Trans</a>
+              <a class="dropdown-item" href="#">Items</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Data Input
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Inventory</a>
+              <a class="dropdown-item" href="#">Market Prices</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Experience Progress</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Advisors
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Auction Flipper</a>
+              <a class="dropdown-item" href="#">Milestone Breaker</a>
+              
+              <a class="dropdown-item" href="#">Relative Material Tool</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+    <!-- End Nav Bars-->
+    
+   <h3> T4 Crafting Tests </h3>
+
+   <div class="input-group ">
+    <div class="input-group-prepend">
+      <span class="input-group-text" >Qty</span>
+    </div>
+    <input type="number" placeholder=1 ng-model="qty">
+  </div>
+
+  
+  
+  <h3>T4</h3>
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >Fine Cloth</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="finecloth">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >Hemp</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="hemp">
+        </div>
+        <h3> T3</h3>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Neat Cloth</span>
+          </div>
+          <input type="number" placeholder=0  ng-model="neatcloth">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >Flax</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="flax">
+        </div>
+        <h3>T2</h3>
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Simple Cloth</span>
+          </div>
+          <input type="number" placeholder=0  ng-model="simplecloth">
+        </div>
+
+      <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >Cotton</span>
+          </div>
+          <input type="number" placeholder=0 ng-model="cotton">
+        </div>
+      
+<div id="output" >{{output()}}
+
+   <h3>Upgrades:</h3>
+
+   <ul>
+     <li>Flax: {{advice.upgrade.flax}}</li>
+     <li>Hemp: {{advice.upgrade.hemp}}</li>
+     
+   </ul>
+
+   <h3>Craft:</h3>
+   <ul>
+      <li>Simple: {{advice.craft.simple}}</li>
+      <li>Neat: {{advice.craft.neat}}</li>
+      <li>Fine: {{advice.craft.fine}}</li>
+    </ul>
+
+</div>
+
+
+
+
+    
+</div><!--ngapp-->
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    //ini
+  $scope.needs={};
+  $scope.needs.raw={};
+  $scope.needs.cloth={};
+
+  $scope.qty =1;
+  $scope.finecloth =0;
+  $scope.hemp=0;
+  $scope.flax=0;
+  $scope.neatcloth =0;
+  $scope.simplecloth =0;
+  $scope.cotton=0;
+
+  $scope.advice={};
+  $scope.advice.upgrade={};
+  $scope.advice.craft={};
+
+$scope.output = function() {
+
+//binding
+//var totalmats = $scope.qty + $scope.finecloth +$scope.hemp+$scope.flax+$scope.neatcloth +$scope.simplecloth +$scope.cotton;
+
+$scope.needs.raw.cotton=0;
+$scope.needs.raw.flax=0;
+$scope.needs.raw.hemp=0;
+
+$scope.needs.cloth.simple=0;  
+$scope.needs.cloth.neat=0;
+$scope.needs.cloth.fine=0;
+
+
+$scope.advice.upgrade.flax=0;
+$scope.advice.upgrade.hemp=0;
+
+$scope.advice.craft.simple=0;  
+$scope.advice.craft.neat=0;
+$scope.advice.craft.fine=0;
+
+$scope.needs.cloth.fine = $scope.qty * 8;
+        
+
+
+        //determine needs
+        //Check if we have enough fine cloth on hand
+        //if yes we are done
+        if($scope.finecloth >= $scope.needs.cloth.fine){return "You have the " + $scope.needs.cloth.fine + " Fine Cloth required";}
+        // if not can we make any?
+        
+          //remove the qty we have from the need
+          $scope.needs.cloth.fine -= $scope.finecloth; 
+          $scope.advice.craft.fine = $scope.needs.cloth.fine;
+          //convert needs to next tier
+          
+        //to make a fine cloth we need 2 hemp and a neat cloth
+        $scope.needs.raw.hemp += $scope.needs.cloth.fine *2;
+        $scope.needs.cloth.neat += $scope.needs.cloth.fine;
+        
+
+        //T4 Craft Fine cloth
+
+        if($scope.hemp < $scope.needs.raw.hemp)
+        {
+            //trickle down remaining need x6 for hemp
+            $scope.needs.raw.hemp -= $scope.hemp;
+            $scope.needs.raw.flax += $scope.needs.raw.hemp *6;
+            //Queue upgrades
+            $scope.advice.upgrade.hemp = $scope.needs.raw.hemp;
+        }
+        if($scope.neatcloth < $scope.needs.cloth.neat)
+        {
+          $scope.needs.cloth.neat -= $scope.neatcloth;
+            //trickle down remaining need. neat is 2 flax and 1 simple
+            $scope.needs.raw.flax += $scope.needs.cloth.neat *2;
+            $scope.needs.cloth.simple += $scope.needs.cloth.neat;
+            //Queue upgrades
+            $scope.advice.craft.neat = $scope.needs.cloth.neat;
+        }
+        if($scope.flax < $scope.needs.raw.flax)
+        {
+          $scope.needs.raw.flax-= $scope.flax;
+            //trickle down remaining need x3 for flax from cotton
+            $scope.needs.raw.cotton += $scope.needs.raw.flax * 3;
+            //Queue upgrades
+            $scope.advice.upgrade.flax = $scope.needs.raw.flax;
+        }
+        if($scope.simplecloth < $scope.needs.cloth.simple)
+        {
+          $scope.needs.cloth.simple -= $scope.simplecloth;
+            //trickle down remaining need 1 cotton
+            $scope.needs.raw.cotton += $scope.needs.cloth.simple;
+            //Queue upgrades
+            $scope.advice.craft.simple = $scope.needs.cloth.simple;
+        }
+
+        if($scope.cotton < $scope.needs.raw.cotton){return "You need to farm " +($scope.needs.raw.cotton - $scope.cotton) + " more Cotton";}
+        return "You now have the mats required!";
+
+};//end output function
+
+
+});
+</script>
+
+<!-- End  T4 Crafting Tests -->
+    <script type="text/javascript" src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  </BODY>
+<footer id="version">Game Version 1.14.381</footer>
+</HTML>
+
