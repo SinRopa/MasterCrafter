@@ -27,7 +27,7 @@
   <BODY>
       <div ng-app="myApp" ng-controller="myCtrl">
     
-        <button type="button" class="btn btn-secondary">Execute</button>
+        <button type="button" class="btn btn-secondary" onlick="execute()">Execute</button>
 
 
 
@@ -62,6 +62,13 @@ xmlhttp.onreadystatechange = function() {
     }
 
 }
+
+function execute(){
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+}
+
+
 
 });
 
