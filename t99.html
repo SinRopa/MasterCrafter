@@ -50,7 +50,7 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 //ini
 var lookup = {};
-$scope.output={};
+$scope.output=[{"item_id":"T5_ORE","city":"Black Market","quality":0,"sell_price_min":679,"sell_price_min_date":"2019-05-15T18:00:00","sell_price_max":750,"sell_price_max_date":"2019-05-15T18:00:00","buy_price_min":0,"buy_price_min_date":"0001-01-01T00:00:00","buy_price_max":0,"buy_price_max_date":"0001-01-01T00:00:00"},{"item_id":"T5_ORE","city":"Caerleon","quality":1,"sell_price_min":736,"sell_price_min_date":"2019-05-16T22:02:00","sell_price_max":819,"sell_price_max_date":"2019-05-16T22:02:00","buy_price_min":631,"buy_price_min_date":"2019-05-16T22:37:00","buy_price_max":631,"buy_price_max_date":"2019-05-16T22:37:00"}];
 
 
 var url = "https://www.albion-online-data.com/api/v2/stats/prices/T5_ORE?locations=Caerleon,Blackmarket";
