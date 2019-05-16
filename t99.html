@@ -60,9 +60,10 @@ fetch( url, {
 	method: 'get'
 }).then( function( response ) {
 	// Success
-  $scope.output=response;
+  $scope.output= JSON.parse(response);
 }).catch( function( err ) {
 	// Error
+  $scope.output="error";
 });
 
 
