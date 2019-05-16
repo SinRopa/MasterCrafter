@@ -50,7 +50,7 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 //ini
 var lookup = {};
-
+$scope.output={};
 
 var xmlhttp = new XMLHttpRequest();
 var url = "https://www.albion-online-data.com/api/v2/stats/prices/T5_ORE?locations=Caerleon,Blackmarket";
