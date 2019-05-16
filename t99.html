@@ -52,24 +52,18 @@ app.controller('myCtrl', function($scope) {
 var lookup = {};
 $scope.output={};
 
-var xmlhttp = new XMLHttpRequest();
+
 var url = "https://www.albion-online-data.com/api/v2/stats/prices/T5_ORE?locations=Caerleon,Blackmarket";
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      $scope.output = JSON.parse(this.responseText);
-        //$scope.output(result);
-    }
-
-};
-
-function execute(){
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-}
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+// url (required), options (optional)
+fetch( url, {
+	method: 'get'
+}).then( function( response ) {
+	// Success
+  $scope.output=response;
+}).catch( function( err ) {
+	// Error
+});
 
 
 });
