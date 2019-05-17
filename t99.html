@@ -16,6 +16,7 @@
           </tr>
         </table>
  
+        <div class="remove"></div>
     
 <script>
 var myApp = angular.module("myApp", []);
@@ -6384,6 +6385,9 @@ $.each(lookup,function(i,item){
             $scope.$apply();
             }
             
+        }
+        else{
+          $( ".remove" ).append( "<p>"+item+"</p>" );
         }
     });
 });//each lookup
