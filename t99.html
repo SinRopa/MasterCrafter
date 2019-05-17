@@ -4279,7 +4279,8 @@ myApp.controller("myCtrl", function($scope) {
 ];
 
  $scope.compareItems = function(){
-$.each(lookup,async function(i,item){
+$.each(lookup, function(i,item){
+  setTimeout(function(){
     var bm = -1;
     var cae= -1;
     var name = "fail";
@@ -4317,6 +4318,7 @@ $.each(lookup,async function(i,item){
         }
     });
 });//each lookup
+},100);//set timeout
 }
 });
 </script>
