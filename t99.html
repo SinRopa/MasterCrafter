@@ -4301,7 +4301,8 @@ $.each(lookup,async function(i,item){
             note.bm = bm;
             note.cae = cae;
             note.name = name;
-            note.profit = bm-cae;
+            //need to subtract 2% tax and 1% post assuming 5% for safety
+            note.profit = Math.floor((bm-cae)*.95);
             if(note.profit >0 && bm>0 && cae > 0)
             {
             console.log(note.name+ " " + note.profit)
