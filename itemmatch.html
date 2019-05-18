@@ -27,7 +27,7 @@
   <BODY>
       <div ng-app="myApp" ng-controller="myCtrl">
     
-    <textarea rows="4" cols="50"></textarea>
+    <textarea rows="4" cols="50"id="test2"></textarea>
   </div>
 
 
@@ -4293,7 +4293,10 @@ $scope.lookup = [
 $.each(data,function(i, item)
 {
   if($scope.lookup.includes(item.UniqueName))
-  console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
+  {
+    $('#test2').append(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
+  }
+  //console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
 }
 );
 });
