@@ -4563,27 +4563,32 @@ function flipper()
     let liquid =0;
     //liquid evaluation
     //check if we can sell normal
-    if(Math.floor(buyers.normal*.95) > sellers.normal){liquid++;}
+    if(Math.floor(buyers.normal*.95*.8) > sellers.normal){liquid++;}
     //check if we can sell good
-    if(Math.floor(buyers.normal*.95) > sellers.good){liquid++;}
-    if(Math.floor(buyers.good*.95) > sellers.good){liquid++;}
+    if(Math.floor(buyers.normal*.95*.8) > sellers.good){liquid++;}
+    if(Math.floor(buyers.good*.95*.8) > sellers.good){liquid++;}
     //check if we can sell outs
-    if(Math.floor(buyers.normal*.95) > sellers.outs){liquid++;}
-    if(Math.floor(buyers.good*.95) > sellers.outs){liquid++;}
-    if(Math.floor(buyers.outs*.95) > sellers.outs){liquid++;}
+    if(Math.floor(buyers.normal*.95*.8) > sellers.outs){liquid++;}
+    if(Math.floor(buyers.good*.95*.8) > sellers.outs){liquid++;}
+    if(Math.floor(buyers.outs*.95*.8) > sellers.outs){liquid++;}
     //check if we can sell excel
-    if(Math.floor(buyers.normal*.95) > sellers.excel){liquid++;}
-    if(Math.floor(buyers.good*.95) > sellers.excel){liquid++;}
-    if(Math.floor(buyers.outs*.95) > sellers.excel){liquid++;}
-    if(Math.floor(buyers.excel*.95) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.normal*.95*.8) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.good*.95*.8) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.outs*.95*.8) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.excel*.95*.8) > sellers.excel){liquid++;}
     //check if we can sell master
-    if(Math.floor(buyers.normal*.95) > sellers.master){liquid++;}
-    if(Math.floor(buyers.good*.95) > sellers.master){liquid++;}
-    if(Math.floor(buyers.outs*.95) > sellers.master){liquid++;}
-    if(Math.floor(buyers.excel*.95) > sellers.master){liquid++;}
-    if(Math.floor(buyers.master*.95) > sellers.master){liquid++;}
+    if(Math.floor(buyers.normal*.95*.8) > sellers.master){liquid++;}
+    if(Math.floor(buyers.good*.95*.8) > sellers.master){liquid++;}
+    if(Math.floor(buyers.outs*.95*.8) > sellers.master){liquid++;}
+    if(Math.floor(buyers.excel*.95*.8) > sellers.master){liquid++;}
+    if(Math.floor(buyers.master*.95*.8) > sellers.master){liquid++;}
 
-    if(liquid >0){$scope.flips.push({item:item_name,liquid:liquid});}
+    if(liquid >0){
+      if(i.includes("@1")){item_name += " @1";}
+      if(i.includes("@2")){item_name += " @2";}
+      if(i.includes("@3")){item_name += " @3";}
+
+      $scope.flips.push({item:item_name,liquid:liquid});}
     $scope.$apply();
     //console.log($scope.flips);
   });//end flipper.each
