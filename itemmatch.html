@@ -4291,8 +4291,14 @@ var lookup = [
 "T7_MAIN_SUMMONERSTAFF_PROTOTYPE@3"
 ];
 
-  $.getJSON("items.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
+  $.getJSON("items.json")
+.done(function(data)
+{
+$.each(data,function(i, item)
+{
+  console.log(item.UniqueName + " " + item.LocalizedNames[0]);
+}
+);
 });
 
 });
