@@ -4294,7 +4294,7 @@ $.each(data,function(i, item)
 {
   if($scope.lookup.includes(item.UniqueName))
   {
-    $('#test2').append(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
+    $('#test2').append('"'+item.UniqueName +'":"' + item.LocalizedNames[0].Value+'",');
   }
   //console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
 }
