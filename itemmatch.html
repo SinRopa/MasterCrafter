@@ -1,28 +1,41 @@
-
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  
+<HTML lang="en">
+  <HEAD>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Master Crafter</title>
+	<meta name="description" content="Albion Online Crafting Suite">
+	<meta name="author" content="SinRopa">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-</head>
-<body ng-app="myApp" ng-controller="myCtrl">
-        <button ng-click="compareItems()">Compare</button>
-        <table class="table table-dark">
-          <tr ng-repeat="i in items | orderBy:'-profit'">
-            <td>{{i.name}}</td><td>{{i.cae}}</td><td>{{i.bm}}</td><td>{{i.profit}}</td>
-          </tr>
-        </table>
  
-        <div class="remove"></div>
-    
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!--<link rel="stylesheet" href="custom.css" -->
+ 
+ 
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135929541-1"></script>
 <script>
-var myApp = angular.module("myApp", []);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-myApp.controller("myCtrl", function($scope) {
-    $scope.items = [];
+  gtag('config', 'UA-135929541-1');
+</script>
+
+	</HEAD>
+  <BODY>
+      <div ng-app="myApp" ng-controller="myCtrl">
+    
+    <textarea rows="4" cols="50"></textarea>
+  </div>
+
+
+</div><!--ngapp-->
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
     
 var lookup = [
 "T2_OFF_SHIELD",
@@ -4278,53 +4291,21 @@ var lookup = [
 "T7_MAIN_SUMMONERSTAFF_PROTOTYPE@3"
 ];
 
- $scope.compareItems = function(){
-$.each(lookup, function(i,item){
-  setTimeout(function(){
-    var bm = -1;
-    var cae= -1;
-    var name = "fail";
-  var url = "https://www.albion-online-data.com/api/v2/stats/prices/"+item+"?locations=Caerleon,Blackmarket";
-  $.getJSON( url, {
-    format: "json"
-  })
-    .done(function( data ) {
-        $.each( data, function( i, item ) 
-        {
-        if(item.city == "Black Market"){ bm = item.buy_price_max;}
-        if (item.city == "Caerleon"){ cae = item.sell_price_min;}
-        name = item.item_id;
-        });
+  $.getJSON("test.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+});
 
-        if(bm!= -1 && cae != -1)
-        {
-            var note = {};
-            note.bm = bm;
-            note.cae = cae;
-            note.name = name;
-            //need to subtract 2% tax and 1% post assuming 5% for safety
-            note.profit = Math.floor((bm-cae)*.95);
-            if(note.profit >0 && bm>0 && cae > 0)
-            {
-            console.log(note.name+ " " + note.profit)
-            $scope.items.push(note);
-            console.log($scope.items);
-            $scope.$apply();
-            }
-            
-        }
-        else{
-          //$( ".remove" ).append( "<p>"+item+"</p>" );
-        }
-    });
-  },1000);//set timeout
-});//each lookup
-
-}
 });
 </script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+
+<!-- End  T4 Crafting Tests -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  </BODY>
+<footer id="version">Game Version 1.14.381</footer>
+</HTML>
+
