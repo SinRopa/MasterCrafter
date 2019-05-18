@@ -4296,7 +4296,7 @@ $scope.lookup = [
 {
 $.each(data,function(i, item)
 {
-  if($scope.lookup.contains(item.UniqueName))
+  if($scope.lookup.includes(item.UniqueName))
   console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
 }
 );
