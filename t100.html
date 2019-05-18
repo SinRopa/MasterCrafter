@@ -21,7 +21,7 @@
   
   
  
-    <h3> Scanning: {{scanner_current_item}}</h3>
+    <h3> Scanning {{scan_status}}: {{scanner_current_item}}</h3>
     <div class="row">
         <div class="col-md-4">
              <div class="panel">
@@ -70,27 +70,16 @@
 
 </div><!--END Scanner-->
 
-
-
-
-
-
-
-
-
-
 <div class="row">
     <div class="col-md-4">
       <!--Flipper-->
          <div class="panel">
              <div class="panel-heading">Flipper</div>
                 <div class="panel-body">
-                    <table class="table table-dark" id="cae">
-                        <tr><td>Normal</td><td>Flipper</td></tr>
-                        <tr><td>Good</td><td>Flipper</td></tr>
-                        <tr><td>Outs</td><td>Flipper</td></tr>
-                        <tr><td>Excel</td><td>Flipper</td></tr>
-                        <tr><td>Master</td><td>Flipper</td></tr>
+                    <table class="table table-dark" >
+                        <tr ng-repeat="i in flips | orderBy:'-liquid'">
+                          <td>{{i.item}}</td><td>{{i.liquid}}</td>
+                        </tr>
                       </table>
                 </div>
           </div>
@@ -132,7 +121,7 @@ var myApp = angular.module("myApp", []);
 myApp.controller("myCtrl", function($scope) 
 {
 $scope.market_data={};
-
+$scope.flips = [];
 $scope.scanner_current_item = "Starting Scanner";
 
 //scanning widgets binding
@@ -147,11 +136,12 @@ $scope.scanner_current_item_bm_outs = 0;
 $scope.scanner_current_item_bm_excel = 0;
 $scope.scanner_current_item_bm_master = 0;
 
+$scope.scan_status = " 0/0 " ;
 $scope.current_time = "2019-05-17T23:09:00";
 
 $scope.item_ids=
 [
-
+//T2
 "T2_OFF_SHIELD",
 "T2_OFF_BOOK",
 "T2_CAPE",
@@ -173,13 +163,49 @@ $scope.item_ids=
 "T2_SHOES_CLOTH_SET1",
 "T2_2H_BOW",
 "T2_MAIN_FIRESTAFF",
-"T2_MAIN_SWORD"
-
+"T2_MAIN_SWORD",
+//T3
+"T3_OFF_SHIELD",
+"T3_OFF_BOOK",
+"T3_OFF_TORCH",
+"T3_CAPE",
+"T3_BAG",
+"T3_2H_TOOL_PICK",
+"T3_2H_TOOL_HAMMER",
+"T3_2H_TOOL_AXE",
+"T3_2H_TOOL_SICKLE",
+"T3_2H_TOOL_KNIFE",
+"T3_2H_TOOL_SIEGEHAMMER",
+"T3_2H_TOOL_FISHINGROD",
+"T3_HEAD_PLATE_SET1",
+"T3_ARMOR_PLATE_SET1",
+"T3_SHOES_PLATE_SET1",
+"T3_HEAD_LEATHER_SET1",
+"T3_ARMOR_LEATHER_SET1",
+"T3_SHOES_LEATHER_SET1",
+"T3_HEAD_CLOTH_SET1",
+"T3_ARMOR_CLOTH_SET1",
+"T3_SHOES_CLOTH_SET1",
+"T3_2H_BOW",
+"T3_2H_CROSSBOW",
+"T3_MAIN_CURSEDSTAFF",
+"T3_MAIN_FIRESTAFF",
+"T3_MAIN_FROSTSTAFF",
+"T3_MAIN_ARCANESTAFF",
+"T3_MAIN_HOLYSTAFF",
+"T3_MAIN_NATURESTAFF",
+"T3_MAIN_DAGGER",
+"T3_MAIN_SPEAR",
+"T3_MAIN_AXE",
+"T3_MAIN_SWORD",
+"T3_2H_QUARTERSTAFF",
+"T3_MAIN_HAMMER",
+"T3_MAIN_MACE",
 ];
 
 $scope.item_names=
 {
-
+//T2
 T2_OFF_SHIELD:"Novice\u0027s Shield",
 T2_OFF_BOOK:"Novice\u0027s Tome of Spells",
 T2_CAPE:"Novice\u0027s Cape",
@@ -201,7 +227,44 @@ T2_ARMOR_CLOTH_SET1:"Novice\u0027s Scholar Robe",
 T2_SHOES_CLOTH_SET1:"Novice\u0027s Scholar Sandals",
 T2_2H_BOW:"Novice\u0027s Bow",
 T2_MAIN_FIRESTAFF:"Novice\u0027s Fire Staff",
-T2_MAIN_SWORD:"Novice\u0027s Broadsword"
+T2_MAIN_SWORD:"Novice\u0027s Broadsword",
+//T3
+T3_OFF_SHIELD:"Journeyman\u0027s Shield",
+T3_OFF_BOOK:"Journeyman\u0027s Tome of Spells",
+T3_OFF_TORCH:"Journeyman\u0027s Torch",
+T3_CAPE:"Journeyman\u0027s Cape",
+T3_BAG:"Journeyman\u0027s Bag",
+T3_2H_TOOL_PICK:"Journeyman\u0027s Pickaxe",
+T3_2H_TOOL_HAMMER:"Journeyman\u0027s Stone Hammer",
+T3_2H_TOOL_AXE:"Journeyman\u0027s Axe",
+T3_2H_TOOL_SICKLE:"Journeyman\u0027s Sickle",
+T3_2H_TOOL_KNIFE:"Journeyman\u0027s Skinning Knife",
+T3_2H_TOOL_SIEGEHAMMER:"Journeyman\u0027s Demolition Hammer",
+T3_2H_TOOL_FISHINGROD:"Journeyman\u0027s Fishing Rod",
+T3_HEAD_PLATE_SET1:"Journeyman\u0027s Soldier Helmet",
+T3_ARMOR_PLATE_SET1:"Journeyman\u0027s Soldier Armor",
+T3_SHOES_PLATE_SET1:"Journeyman\u0027s Soldier Boots",
+T3_HEAD_LEATHER_SET1:"Journeyman\u0027s Mercenary Hood",
+T3_ARMOR_LEATHER_SET1:"Journeyman\u0027s Mercenary Jacket",
+T3_SHOES_LEATHER_SET1:"Journeyman\u0027s Mercenary Shoes",
+T3_HEAD_CLOTH_SET1:"Journeyman\u0027s Scholar Cowl",
+T3_ARMOR_CLOTH_SET1:"Journeyman\u0027s Scholar Robe",
+T3_SHOES_CLOTH_SET1:"Journeyman\u0027s Scholar Sandals",
+T3_2H_BOW:"Journeyman\u0027s Bow",
+T3_2H_CROSSBOW:"Journeyman\u0027s Crossbow",
+T3_MAIN_CURSEDSTAFF:"Journeyman\u0027s Cursed Staff",
+T3_MAIN_FIRESTAFF:"Journeyman\u0027s Fire Staff",
+T3_MAIN_FROSTSTAFF:"Journeyman\u0027s Frost Staff",
+T3_MAIN_ARCANESTAFF:"Journeyman\u0027s Arcane Staff",
+T3_MAIN_HOLYSTAFF:"Journeyman\u0027s Holy Staff",
+T3_MAIN_NATURESTAFF:"Journeyman\u0027s Nature Staff",
+T3_MAIN_DAGGER:"Journeyman\u0027s Dagger",
+T3_MAIN_SPEAR:"Journeyman\u0027s Spear",
+T3_MAIN_AXE:"Journeyman\u0027s Battleaxe",
+T3_MAIN_SWORD:"Journeyman\u0027s Broadsword",
+T3_2H_QUARTERSTAFF:"Journeyman\u0027s Quarterstaff",
+T3_MAIN_HAMMER:"Journeyman\u0027s Hammer",
+T3_MAIN_MACE:"Journeyman\u0027s Mace"
 
 };
 
@@ -212,6 +275,7 @@ $scope.scanner_counter = 0;
 
 function scan()
 {
+  $scope.scan_status = $scope.scanner_counter +1 +" / " + $scope.item_ids.length;
   $scope.$apply();
   //get scan pointer
   let i = $scope.scanner_counter;
@@ -337,11 +401,52 @@ $scope.scanner_current_item_bm_outs = $scope.market_data[item_id].bm.outs;
 $scope.scanner_current_item_bm_excel = $scope.market_data[item_id].bm.excel;
 $scope.scanner_current_item_bm_master = $scope.market_data[item_id].bm.master;
 //console.log($scope.market_data);
+//write data to screen
 $scope.$apply();
+flipper();
   });//end .done
-  //write data to screen
+} //end marketscan
 
-}
+
+
+function flipper()
+{
+  $scope.flips =[];
+  //flip: item, quality, price, profit
+  $.each($scope.market_data, function(i, item)
+  {
+    
+    let item_name = $scope.item_names[i];
+    let buyers = item.bm;
+    let sellers = item.cae;
+    let liquid =0;
+    //liquid evaluation
+    //check if we can sell normal
+    if(Math.floor(buyers.normal*.95) > sellers.normal){liquid++;}
+    //check if we can sell good
+    if(Math.floor(buyers.normal*.95) > sellers.good){liquid++;}
+    if(Math.floor(buyers.good*.95) > sellers.good){liquid++;}
+    //check if we can sell outs
+    if(Math.floor(buyers.normal*.95) > sellers.outs){liquid++;}
+    if(Math.floor(buyers.good*.95) > sellers.outs){liquid++;}
+    if(Math.floor(buyers.outs*.95) > sellers.outs){liquid++;}
+    //check if we can sell excel
+    if(Math.floor(buyers.normal*.95) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.good*.95) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.outs*.95) > sellers.excel){liquid++;}
+    if(Math.floor(buyers.excel*.95) > sellers.excel){liquid++;}
+    //check if we can sell master
+    if(Math.floor(buyers.normal*.95) > sellers.master){liquid++;}
+    if(Math.floor(buyers.good*.95) > sellers.master){liquid++;}
+    if(Math.floor(buyers.outs*.95) > sellers.master){liquid++;}
+    if(Math.floor(buyers.excel*.95) > sellers.master){liquid++;}
+    if(Math.floor(buyers.master*.95) > sellers.master){liquid++;}
+
+    if(liquid >0){$scope.flips.push({item:item_name,liquid:liquid});}
+    $scope.$apply();
+    //console.log($scope.flips);
+  });//end flipper.each
+}//end flipper
 
 });
 </script>
