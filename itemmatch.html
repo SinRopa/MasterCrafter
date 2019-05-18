@@ -37,7 +37,7 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
     
-var lookup = [
+$scope.lookup = [
 "T2_OFF_SHIELD",
 "T3_OFF_SHIELD",
 "T4_OFF_SHIELD",
@@ -4296,7 +4296,7 @@ var lookup = [
 {
 $.each(data,function(i, item)
 {
-  if(lookup.contains(item.UniqueName))
+  if($scope.lookup.contains(item.UniqueName))
   console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
 }
 );
