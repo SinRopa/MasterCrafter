@@ -86,11 +86,11 @@
              <div class="panel-heading">Flipper</div>
                 <div class="panel-body">
                     <table class="table table-dark" id="cae">
-                        <tr><td>Normal</td><td>{{scanner_current_item_cae_normal}}</td></tr>
-                        <tr><td>Good</td><td>{{scanner_current_item_cae_good}}</td></tr>
-                        <tr><td>Outs</td><td>{{scanner_current_item_cae_outs}}</td></tr>
-                        <tr><td>Excel</td><td>{{scanner_current_item_cae_excel}}</td></tr>
-                        <tr><td>Master</td><td>{{scanner_current_item_cae_master}}</td></tr>
+                        <tr><td>Normal</td><td>Flipper</td></tr>
+                        <tr><td>Good</td><td>Flipper</td></tr>
+                        <tr><td>Outs</td><td>Flipper</td></tr>
+                        <tr><td>Excel</td><td>Flipper</td></tr>
+                        <tr><td>Master</td><td>Flipper</td></tr>
                       </table>
                 </div>
           </div>
@@ -101,11 +101,11 @@
              <div class="panel-heading">Scrapper</div>
                 <div class="panel-body">
                     <table class="table table-dark" id="bm">
-                        <tr><td>Normal</td><td>{{scanner_current_item_bm_normal}}</td></tr>
-                        <tr><td>Good</td><td>{{scanner_current_item_bm_good}}</td></tr>
-                        <tr><td>Outs</td><td>{{scanner_current_item_bm_outs}}</td></tr>
-                        <tr><td>Excel</td><td>{{scanner_current_item_bm_excel}}</td></tr>
-                        <tr><td>Master</td><td>{{scanner_current_item_bm_master}}</td></tr>
+                        <tr><td>Normal</td><td>Scrapper</td></tr>
+                        <tr><td>Good</td><td>Scrapper</td></tr>
+                        <tr><td>Outs</td><td>Scrapper</td></tr>
+                        <tr><td>Excel</td><td>Scrapper</td></tr>
+                        <tr><td>Master</td><td>Scrapper</td></tr>
                       </table>
                 </div>
           </div>
@@ -131,24 +131,27 @@ var myApp = angular.module("myApp", []);
 
 myApp.controller("myCtrl", function($scope) 
 {
-$scope.scanner_current_item = "Test Item";
+$scope.market_data={};
 
+$scope.scanner_current_item = "Starting Scanner";
 
-$scope.scanner_current_item_cae_normal = 61;
-$scope.scanner_current_item_cae_good = 5610;
-$scope.scanner_current_item_cae_outs = 610;
-$scope.scanner_current_item_cae_excel = 615;
-$scope.scanner_current_item_cae_master = 8610;
-$scope.scanner_current_item_bm_normal = 610;
-$scope.scanner_current_item_bm_good = 61;
-$scope.scanner_current_item_bm_outs = 9610;
-$scope.scanner_current_item_bm_excel = 361;
-$scope.scanner_current_item_bm_master = 1610;
+//scanning widgets binding
+$scope.scanner_current_item_cae_normal = 0;
+$scope.scanner_current_item_cae_good = 0;
+$scope.scanner_current_item_cae_outs = 0;
+$scope.scanner_current_item_cae_excel = 0;
+$scope.scanner_current_item_cae_master = 0;
+$scope.scanner_current_item_bm_normal = 0;
+$scope.scanner_current_item_bm_good = 0;
+$scope.scanner_current_item_bm_outs = 0;
+$scope.scanner_current_item_bm_excel = 0;
+$scope.scanner_current_item_bm_master = 0;
 
 $scope.current_time = "2019-05-17T23:09:00";
 
 $scope.item_ids=
 [
+
 "T2_OFF_SHIELD",
 "T2_OFF_BOOK",
 "T2_CAPE",
@@ -170,8 +173,175 @@ $scope.item_ids=
 "T2_SHOES_CLOTH_SET1",
 "T2_2H_BOW",
 "T2_MAIN_FIRESTAFF",
-"T2_MAIN_SWORD",
-]
+"T2_MAIN_SWORD"
+
+];
+
+$scope.item_names=
+{
+
+T2_OFF_SHIELD:"Novice\u0027s Shield",
+T2_OFF_BOOK:"Novice\u0027s Tome of Spells",
+T2_CAPE:"Novice\u0027s Cape",
+T2_BAG:"Novice\u0027s Bag",
+T2_2H_TOOL_PICK:"Novice\u0027s Pickaxe",
+T2_2H_TOOL_HAMMER:"Novice\u0027s Stone Hammer",
+T2_2H_TOOL_AXE:"Novice\u0027s Axe",
+T2_2H_TOOL_SICKLE:"Novice\u0027s Sickle",
+T2_2H_TOOL_KNIFE:"Novice\u0027s Skinning Knife",
+T2_2H_TOOL_SIEGEHAMMER:"Novice\u0027s Demolition Hammer",
+T2_HEAD_PLATE_SET1:"Novice\u0027s Soldier Helmet",
+T2_ARMOR_PLATE_SET1:"Novice\u0027s Soldier Armor",
+T2_SHOES_PLATE_SET1:"Novice\u0027s Soldier Boots",
+T2_HEAD_LEATHER_SET1:"Novice\u0027s Mercenary Hood",
+T2_ARMOR_LEATHER_SET1:"Novice\u0027s Mercenary Jacket",
+T2_SHOES_LEATHER_SET1:"Novice\u0027s Mercenary Shoes",
+T2_HEAD_CLOTH_SET1:"Novice\u0027s Scholar Cowl",
+T2_ARMOR_CLOTH_SET1:"Novice\u0027s Scholar Robe",
+T2_SHOES_CLOTH_SET1:"Novice\u0027s Scholar Sandals",
+T2_2H_BOW:"Novice\u0027s Bow",
+T2_MAIN_FIRESTAFF:"Novice\u0027s Fire Staff",
+T2_MAIN_SWORD:"Novice\u0027s Broadsword"
+
+};
+
+
+//Scanner control
+setInterval(scan, 3000);
+$scope.scanner_counter = 0;
+
+function scan()
+{
+  $scope.$apply();
+  //get scan pointer
+  let i = $scope.scanner_counter;
+  //get item id to scan
+  let item_id = $scope.item_ids[i];
+  //get readable item name from id
+  let item_name = $scope.item_names[item_id];
+  //write scanning item to screen
+  $scope.scanner_current_item = item_name;
+  //scan market for this item
+  marketscan(item_id);
+  //get ready to move to the next item
+  $scope.scanner_counter++;
+  $scope.$apply();
+  //make sure we havent finished the list of items
+    if($scope.scanner_counter >= $scope.item_ids.length)
+      {
+        //if so, start over
+        $scope.scanner_counter = 0;
+      }//end if
+}//end scan
+
+function marketscan(item_id)
+{
+  //clean our data
+$scope.market_data[item_id]={};
+$scope.market_data[item_id].cae=
+{
+  normal:0,
+  good:0,
+  outs:0,
+  excel:0,
+  master:0
+};
+$scope.market_data[item_id].bm=
+{
+  normal:0,
+  good:0,
+  outs:0,
+  excel:0,
+  master:0
+};
+  //query new data
+  let url = "https://www.albion-online-data.com/api/v2/stats/prices/"+item_id+"?locations=Caerleon,Blackmarket";
+  
+  $.getJSON( url, {
+    format: "json"
+  })
+  .done(function(data)
+  {
+    $.each(data,function(x, item)
+    {
+      //item.city .quality 
+      //BM .buy_price_max .buy_price_max_date
+      //Cae .sell_price_min .sell_price_min_date
+
+      //check city
+      if(item.city == "Black Market")
+      {
+        switch(item.quality)
+        {
+          case 1:
+          $scope.market_data[item_id].bm.normal = item.buy_price_max;
+          //console.log("found a 1");
+            break;
+          case 2:
+          $scope.market_data[item_id].bm.good = item.buy_price_max;
+          //console.log("found a 2");
+            break;
+          case 3:
+          $scope.market_data[item_id].bm.outs = item.buy_price_max;
+          //console.log("found a 3");
+            break;
+          case 4:
+          $scope.market_data[item_id].bm.excel = item.buy_price_max;
+          //console.log("found a 4");
+            break;
+          case 5:
+          $scope.market_data[item_id].bm.master = item.buy_price_max;
+          //console.log("found a 5");
+            break;
+
+        }
+
+      }
+      if(item.city == "Caerleon")
+      {
+        switch(item.quality)
+        {
+          case 1:
+          $scope.market_data[item_id].cae.normal = item.sell_price_min;
+          //console.log("found a 1");
+            break;
+          case 2:
+          $scope.market_data[item_id].cae.good = item.sell_price_min;
+          //console.log("found a 2");
+            break;
+          case 3:
+          $scope.market_data[item_id].cae.outs = item.sell_price_min;
+          //console.log("found a 3");
+            break;
+          case 4:
+          $scope.market_data[item_id].cae.excel = item.sell_price_min;
+          //console.log("found a 4");
+            break;
+          case 5:
+          $scope.market_data[item_id].cae.master = item.sell_price_min;
+          //console.log("found a 5");
+            break;
+
+        }
+      }
+      
+    });//end .each
+    $scope.scanner_current_item_cae_normal = $scope.market_data[item_id].cae.normal;
+$scope.scanner_current_item_cae_good = $scope.market_data[item_id].cae.good;
+$scope.scanner_current_item_cae_outs = $scope.market_data[item_id].cae.outs;
+$scope.scanner_current_item_cae_excel = $scope.market_data[item_id].cae.excel;
+$scope.scanner_current_item_cae_master = $scope.market_data[item_id].cae.master;
+$scope.scanner_current_item_bm_normal = $scope.market_data[item_id].bm.normal;
+$scope.scanner_current_item_bm_good = $scope.market_data[item_id].bm.good;
+$scope.scanner_current_item_bm_outs = $scope.market_data[item_id].bm.outs;
+$scope.scanner_current_item_bm_excel = $scope.market_data[item_id].bm.excel;
+$scope.scanner_current_item_bm_master = $scope.market_data[item_id].bm.master;
+//console.log($scope.market_data);
+$scope.$apply();
+  });//end .done
+  //write data to screen
+
+}
 
 });
 </script>
