@@ -4296,7 +4296,8 @@ var lookup = [
 {
 $.each(data,function(i, item)
 {
-  console.log(item.UniqueName + " " + item.LocalizedNames[0].Value);
+  if(lookup.contains(item.UniqueName))
+  console.log(item.UniqueName +':"' + item.LocalizedNames[0].Value+'",');
 }
 );
 });
